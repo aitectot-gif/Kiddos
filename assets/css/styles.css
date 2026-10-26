@@ -41,8 +41,9 @@ body.launch .review-note{display:none}
 .site-header{height:92px;padding:6px max(4.5vw,20px);display:flex;align-items:center;justify-content:space-between;gap:22px;background:rgba(255,255,255,.97);position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(40,30,10,.06);backdrop-filter:blur(12px)}
 .brand{display:flex;align-items:center;flex-shrink:0;height:100%;overflow:hidden}
 .brand-logo{width:128px;height:128px;object-fit:contain;margin:-18px -16px}
+.brand-name{margin-left:2px;font-family:var(--font-head);font-size:clamp(20px,1.9vw,28px);font-weight:900;letter-spacing:-.03em;line-height:1;color:var(--coral);white-space:nowrap}
 .main-nav{display:flex;align-items:center;gap:clamp(10px,1.7vw,24px);font-size:14px;font-weight:700}
-.main-nav>a:not(.nav-cta){transition:color .2s;padding:6px 0;border-bottom:2px solid transparent}
+.main-nav>a:not(.nav-cta){transition:color .2s;padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap}
 .main-nav>a:not(.nav-cta):hover{color:var(--coral)}
 .main-nav>a[aria-current="page"]{color:var(--coral);border-bottom-color:var(--yellow)}
 .nav-cta{padding:12px 18px;background:var(--yellow);border-radius:999px;font-weight:900;white-space:nowrap}
@@ -355,11 +356,22 @@ button.gallery-item:hover img{transform:scale(1.06)}
 
 @media(min-width:1500px){.section-pad{padding-left:calc((100vw - 1320px)/2);padding-right:calc((100vw - 1320px)/2)}}
 @media(max-width:1180px){
+  .site-header{padding-left:max(3vw,18px);padding-right:max(3vw,18px);gap:14px}
+  .main-nav{font-size:13px}
+  .nav-cta{padding:11px 14px}
+  .brand-name{font-size:20px}
   .program-grid{grid-template-columns:repeat(2,1fr)}
   .care-grid{grid-template-columns:repeat(2,1fr)}
   .footer-main{grid-template-columns:1fr 1fr}
   .hero-photo-wrap{height:380px}
   .visual-sun{width:320px;height:320px}
+}
+/* Desktop menu between 901 and 1040px: shrink so the name, links and Enquire button fit on one line */
+@media(min-width:901px) and (max-width:1040px){
+  .site-header{gap:10px}
+  .brand-name{font-size:18px}
+  .main-nav{font-size:12px;gap:10px}
+  .nav-cta{padding:10px 12px}
 }
 @media(max-width:900px){
   html{scroll-padding-top:84px}
@@ -367,6 +379,7 @@ button.gallery-item:hover img{transform:scale(1.06)}
   .site-header{height:78px;padding:4px 18px}
   .brand-logo{width:110px;height:110px;margin:-16px -14px}
   .menu-toggle{display:block}
+  .brand-name{font-size:22px}
   .main-nav{display:none;position:absolute;top:77px;left:0;right:0;background:#fff;padding:14px 22px 22px;box-shadow:0 15px 25px #0000000f;align-items:stretch;gap:0;flex-direction:column;font-size:16px}
   .main-nav.open{display:flex}
   .main-nav>a:not(.nav-cta){padding:12px 4px;border-bottom:1px solid #f0ece4}
@@ -453,3 +466,7 @@ button.gallery-item:hover img{transform:scale(1.06)}
   .mobile-actions a:last-child{background:var(--coral);color:#fff}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media(max-width:380px){
+  .site-header{padding-left:12px;padding-right:12px}
+  .brand-name{font-size:18px}
+}
