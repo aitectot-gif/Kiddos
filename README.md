@@ -22,7 +22,7 @@ Shared: `assets/css/styles.css`, `assets/js/main.js`, `assets/img/kiddos-paradis
 
 These are copied into each HTML file. When you change one, change it everywhere (search for the text):
 
-- Announcement bar, `<header class="site-header">` (nav + both phone numbers + Enquire button)
+- Announcement bar (tagline left; location + both phone numbers right), `<header class="site-header">` (nav + Enquire button)
 - `<footer class="site-footer">` and `<div class="mobile-actions">`
 - Enquiry form (`admissions.html` and `contact.html`)
 - JSON-LD business details (`index.html` and `contact.html`)
