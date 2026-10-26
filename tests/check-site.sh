@@ -23,7 +23,7 @@ for p in $PAGES; do
     case "$href" in
       http*|mailto:*|tel:*|assets/*|https*) continue ;;
     esac
-    file="${href%%#*}"; anchor=""
+    file="${href%%#*}"; file="${file#/}"; anchor=""
     [[ "$href" == *"#"* ]] && anchor="${href#*#}"
     [ -z "$file" ] && file="$p"
     [ -f "$file" ] || { fail "$p: link to missing file '$href'"; continue; }

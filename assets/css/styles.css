@@ -373,6 +373,7 @@ button.gallery-item:hover img{transform:scale(1.06)}
   .nav-cta{margin-top:14px;text-align:center}
   .header-phones{display:flex;flex-direction:row;gap:6px;padding:14px 4px 0;font-size:15px;white-space:normal}
   .hero{grid-template-columns:1fr;padding-top:56px;gap:10px}
+  .doodle{display:none}
   .hero-visual{min-height:430px;margin-top:10px}
   .welcome-grid,.approach-grid,.split,.contact-grid,.faq,.tuition,.daycare-band,.director-card,.program-detail{grid-template-columns:1fr}
   .welcome-grid{gap:8px}
@@ -391,8 +392,13 @@ button.gallery-item:hover img{transform:scale(1.06)}
   .feature-band{padding:30px 24px}
 }
 @media(max-width:560px){
-  body{font-size:15px}
+  body{font-size:15px;padding-bottom:68px}
   .section-pad{padding:58px 18px}
+  /* Keep both phone numbers on the first screen: move the contact line up under the headline */
+  .hero-copy{display:flex;flex-direction:column}
+  .hero-copy>*{order:2}
+  .hero-copy>.eyebrow,.hero-copy>h1{order:0}
+  .hero-copy>.hero-contact{order:1;margin:0 0 20px}
   .announcement-location{display:none}
   .hero{padding-top:42px}
   .page-hero{padding-top:46px;padding-bottom:44px}
