@@ -44,7 +44,7 @@ Form logic: serve the repo and open `/tests/form.test.html` (all lines should re
 
 1. **Review notes:** yellow "Confirm…" notes mark unconfirmed details. After the client confirms them, update the copy, then add `class="launch"` to `<body>` on every page to hide any remaining notes.
 2. **Photos:** replace every "School photo coming soon" placeholder (`.photo-ph`) with real, compressed (WebP) school photos. Written parent/guardian consent is required for identifiable children. Gallery instructions are in a comment in `gallery.html`.
-3. **Enquiry form:** set `FORM_ENDPOINT` in `assets/js/main.js` to a tested form service (Formspree, or a Google Apps Script web app writing to a Google Sheet and emailing kiddosparadise19@gmail.com). Until then the form opens a pre-filled email draft and tells the parent so.
+3. **Enquiry form:** follow `integrations/google-apps-script/SETUP.md` (Google Sheet + email alert to kiddosparadise19@gmail.com), then set `FORM_ENDPOINT` in `assets/js/main.js` to the web app `/exec` URL and send a live test. Until then the form opens a pre-filled email draft and tells the parent so.
 4. **Google Maps:** replace the provisional search link in `contact.html` with the verified listing and optionally embed the map.
 5. **WhatsApp:** add only after the WhatsApp number is confirmed.
 6. **Reviews:** add 3–6 genuine, approved parent reviews and the Google Reviews link (Home, reviews section).

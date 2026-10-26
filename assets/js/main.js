@@ -64,11 +64,13 @@
     if (button) button.disabled = true;
     setStatus(form, 'sending', MESSAGES.sending);
     try {
-      const body = new FormData();
-      Object.entries(fields).forEach(([key, value]) => body.append(key, value));
-      body.append('consent', 'yes');
+      // URL-encoded body: Google Apps Script only parses this format into e.parameter.
+      const body = new URLSearchParams({ ...fields, consent: 'yes', page: window.location.pathname });
       const response = await fetchImpl(endpoint, { method: 'POST', body, headers: { Accept: 'application/json' } });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      // The Apps Script always answers HTTP 200; it reports failures as {"ok": false}.
+      const result = await response.json().catch(() => null);
+      if (result && result.ok === false) throw new Error(result.error || 'Rejected');
       setStatus(form, 'sent', MESSAGES.sent);
       form.reset();
       return 'sent';

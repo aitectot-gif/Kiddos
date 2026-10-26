@@ -43,14 +43,25 @@ const makeForm = () => {
   // endpoint success
   {
     const form = makeForm(); let body = null;
-    const r = await KP.submitEnquiry(form, { endpoint: 'https://example.test/f', fetchImpl: async (u, o) => { body = o.body; return { ok: true, status: 200 }; }, navigate: () => {} });
+    const r = await KP.submitEnquiry(form, { endpoint: 'https://example.test/f', fetchImpl: async (u, o) => { body = o.body; return { ok: true, status: 200, json: async () => ({ ok: true }) }; }, navigate: () => {} });
     const status = form.querySelector('.form-status').textContent;
-    check('endpoint success', r === 'sent' && status === M.sent && body instanceof FormData && body.get('parentName') === 'Asha Rao' && !body.has('company'),
-      JSON.stringify({ r, status }));
+    check('endpoint success', r === 'sent' && status === M.sent && body instanceof URLSearchParams && body.get('parentName') === 'Asha Rao' && body.get('message') === 'Fees & timings?' && !body.has('company'),
+      JSON.stringify({ r, status, body: String(body) }));
   }
 
-  // endpoint failure (HTTP 500 and network error)
-  for (const [label, impl] of [['500', async () => ({ ok: false, status: 500 })], ['network', async () => { throw new TypeError('Failed to fetch'); }]]) {
+  // endpoint success without a JSON body (e.g. Formspree-style plain 200) still counts as sent
+  {
+    const form = makeForm();
+    const r = await KP.submitEnquiry(form, { endpoint: 'https://example.test/f', fetchImpl: async () => ({ ok: true, status: 200, json: async () => { throw new SyntaxError('not json'); } }), navigate: () => {} });
+    check('endpoint success (non-JSON)', r === 'sent', JSON.stringify({ r }));
+  }
+
+  // endpoint failure (HTTP 500, network error, and HTTP 200 with {ok:false} from the Apps Script)
+  for (const [label, impl] of [
+    ['500', async () => ({ ok: false, status: 500 })],
+    ['network', async () => { throw new TypeError('Failed to fetch'); }],
+    ['ok:false', async () => ({ ok: true, status: 200, json: async () => ({ ok: false, error: 'Missing fields' }) })],
+  ]) {
     const form = makeForm();
     const r = await KP.submitEnquiry(form, { endpoint: 'https://example.test/f', fetchImpl: impl, navigate: () => {} });
     const status = form.querySelector('.form-status').textContent;
