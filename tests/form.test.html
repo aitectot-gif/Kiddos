@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Enquiry form tests</title></head>
+<body>
+<!-- Run: serve the repo root, then chrome --headless=new --dump-dom http://localhost:8080/tests/form.test.html -->
+<template id="fixture">
+  <form class="enquiry-form" novalidate>
+    <input name="parentName" value="Asha Rao">
+    <input name="phone" value="98450 12345">
+    <select name="childAge"><option selected>3–4.5 years</option></select>
+    <select name="program"><option selected>Nursery</option></select>
+    <input name="startDate" value="2027-06-01">
+    <textarea name="message">Fees & timings?</textarea>
+    <input name="company" value="">
+    <button type="submit">Send</button>
+    <p class="form-status"></p>
+  </form>
+</template>
+<pre id="out"></pre>
+<script src="../assets/js/main.js"></script>
+<script>
+const out = document.getElementById('out');
+const results = [];
+const check = (name, ok, detail = '') => results.push(`${ok ? 'PASS' : 'FAIL'} ${name}${ok ? '' : ' :: ' + detail}`);
+const makeForm = () => {
+  const node = document.getElementById('fixture').content.firstElementChild.cloneNode(true);
+  document.body.appendChild(node);
+  return node;
+};
+
+(async () => {
+  const M = KP.MESSAGES;
+
+  // mailto fallback
+  {
+    const form = makeForm(); let navigated = null;
+    const r = await KP.submitEnquiry(form, { endpoint: '', fetchImpl: () => { throw new Error('no fetch'); }, navigate: u => { navigated = u; } });
+    const status = form.querySelector('.form-status').textContent;
+    check('mailto fallback', r === 'mailto' && String(navigated).startsWith('mailto:kiddosparadise19@gmail.com?subject=') && status === M.mailto,
+      JSON.stringify({ r, navigated, status }));
+  }
+
+  // endpoint success
+  {
+    const form = makeForm(); let body = null;
+    const r = await KP.submitEnquiry(form, { endpoint: 'https://example.test/f', fetchImpl: async (u, o) => { body = o.body; return { ok: true, status: 200 }; }, navigate: () => {} });
+    const status = form.querySelector('.form-status').textContent;
+    check('endpoint success', r === 'sent' && status === M.sent && body instanceof FormData && body.get('parentName') === 'Asha Rao' && !body.has('company'),
+      JSON.stringify({ r, status }));
+  }
+
+  // endpoint failure (HTTP 500 and network error)
+  for (const [label, impl] of [['500', async () => ({ ok: false, status: 500 })], ['network', async () => { throw new TypeError('Failed to fetch'); }]]) {
+    const form = makeForm();
+    const r = await KP.submitEnquiry(form, { endpoint: 'https://example.test/f', fetchImpl: impl, navigate: () => {} });
+    const status = form.querySelector('.form-status').textContent;
+    const btn = form.querySelector('[type=submit]');
+    check(`endpoint failure (${label})`, r === 'error' && status === M.error && !btn.disabled && status.includes('99727 76012') && status.includes('91879 63957'),
+      JSON.stringify({ r, status, disabled: btn.disabled }));
+  }
+
+  // honeypot
+  {
+    const form = makeForm(); form.querySelector('[name=company]').value = 'Spam Inc';
+    let called = false;
+    const r = await KP.submitEnquiry(form, { endpoint: 'https://example.test/f', fetchImpl: async () => { called = true; return { ok: true }; }, navigate: () => { called = true; } });
+    check('honeypot', r === 'blocked' && !called, JSON.stringify({ r, called }));
+  }
+
+  // buildMailto encodes
+  {
+    const url = KP.buildMailto({ parentName: 'A', phone: '1', childAge: '2–3 years', program: 'Playgroup', startDate: '', message: 'Fees & timings?' });
+    check('buildMailto encodes', url.includes('%26') && !url.includes('& timings') && url.includes(encodeURIComponent('Program: Playgroup')), url);
+  }
+
+  out.textContent = results.join('\n') + `\n${results.every(r => r.startsWith('PASS')) ? 'ALL PASS' : 'SOME FAILED'}`;
+})().catch(e => { out.textContent = 'FAIL harness :: ' + e; });
+</script>
+</body>
+</html>
