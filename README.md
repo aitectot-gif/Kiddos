@@ -29,6 +29,8 @@ These are copied into each HTML file. When you change one, change it everywhere 
 
 Rule from the brief: always show **99727 76012 | 91879 63957** together.
 
+After changing `styles.css` or `main.js`, bump the `?v=` on their links in every page (browsers cache `/assets` for 7 days).
+
 ## Preview locally
 
 Serve the folder with any static server and open http://localhost:8080/ — e.g. `npx serve -l 8080 .` or `python -m http.server 8080`.

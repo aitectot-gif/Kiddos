@@ -23,7 +23,7 @@ for p in $PAGES; do
     case "$href" in
       http*|mailto:*|tel:*|assets/*|https*) continue ;;
     esac
-    file="${href%%#*}"; file="${file#/}"; anchor=""
+    file="${href%%#*}"; file="${file%%\?*}"; file="${file#/}"; anchor=""
     [[ "$href" == *"#"* ]] && anchor="${href#*#}"
     [ -z "$file" ] && file="$p"
     [ -f "$file" ] || { fail "$p: link to missing file '$href'"; continue; }
@@ -32,6 +32,10 @@ for p in $PAGES; do
     fi
   done
 done
+
+# Every page must request the same CSS/JS version (bump ?v= on all pages together after changing them)
+versions=$(grep -hoE 'styles\.css\?v=[^"]*|main\.js\?v=[^"]*' $PAGES | sort -u | wc -l)
+[ "$versions" -eq 2 ] || fail "CSS/JS ?v= version differs between pages (or is missing)"
 
 # Repo-wide content rules (deployable files only)
 deploy_files=$(find . -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' -o -name '*.json' -o -name '*.xml' -o -name '*.txt' \) \
