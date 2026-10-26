@@ -349,6 +349,9 @@ button.gallery-item:hover img{transform:scale(1.06)}
 
 /* Mobile actions + lightbox */
 .mobile-actions{display:none}
+.whatsapp-float{position:fixed;right:24px;bottom:24px;z-index:55;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:#25d366;color:#fff;box-shadow:0 8px 22px #0000002e;transition:transform .2s,box-shadow .2s}
+.whatsapp-float:hover{transform:scale(1.07);box-shadow:0 10px 26px #0000003d}
+.whatsapp-float:focus-visible{outline:3px solid var(--brown);outline-offset:3px}
 .lightbox{border:0;background:#151515;padding:20px;border-radius:16px;max-width:min(92vw,1100px);max-height:90vh;box-shadow:0 20px 80px #0008}
 .lightbox::backdrop{background:#17130fe8}
 .lightbox img{max-width:85vw;max-height:78vh;object-fit:contain}
@@ -461,6 +464,7 @@ button.gallery-item:hover img{transform:scale(1.06)}
   .footer-brand img{width:120px;height:120px}
   .feature-band{padding:24px 18px;border-radius:24px}
   .mobile-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;z-index:60;bottom:0;left:0;right:0;background:#fff;padding:9px 12px calc(9px + env(safe-area-inset-bottom));box-shadow:0 -7px 25px #00000014}
+  .whatsapp-float{right:16px;bottom:calc(80px + env(safe-area-inset-bottom));width:54px;height:54px}
   .mobile-actions a{text-align:center;padding:12px;border-radius:999px;font-family:var(--font-head);font-size:15px;font-weight:900}
   .mobile-actions a:first-child{background:var(--yellow)}
   .mobile-actions a:last-child{background:var(--coral);color:#fff}

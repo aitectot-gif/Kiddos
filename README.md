@@ -38,7 +38,7 @@ Serve the folder with any static server and open http://localhost:8080/ — e.g.
 ## Checks
 
 ```bash
-bash tests/check-site.sh          # links, anchors, phone numbers, one <h1>, no stock photos/WhatsApp, logo unchanged, font sizes
+bash tests/check-site.sh          # links, anchors, phone numbers, one <h1>, no stock photos, WhatsApp button on every page (99727 76012 only), logo unchanged, font sizes
 ```
 Form logic: serve the repo and open `/tests/form.test.html` (all lines should read PASS).
 
@@ -48,7 +48,7 @@ Form logic: serve the repo and open `/tests/form.test.html` (all lines should re
 2. **Photos:** replace every "School photo coming soon" placeholder (`.photo-ph`) with real, compressed (WebP) school photos. Written parent/guardian consent is required for identifiable children. Gallery instructions are in a comment in `gallery.html`.
 3. **Enquiry form:** follow `integrations/google-apps-script/SETUP.md` (Google Sheet + email alert to kiddosparadise19@gmail.com), then set `FORM_ENDPOINT` in `assets/js/main.js` to the web app `/exec` URL and send a live test. Until then the form opens a pre-filled email draft and tells the parent so.
 4. **Google Maps:** replace the provisional search link in `contact.html` with the verified listing and optionally embed the map.
-5. **WhatsApp:** add only after the WhatsApp number is confirmed.
+5. **WhatsApp:** floating button on every page opens a chat with **99727 76012** (confirmed by Tectot 2026-10-26). To change the number, edit the `whatsapp-float` link on every page and the number in `tests/check-site.sh`.
 6. **Reviews:** add 3–6 genuine, approved parent reviews and the Google Reviews link (Home, reviews section).
 7. **Director:** add the approved portrait (and optional message) on `about.html`.
 8. **Analytics:** GA4, Search Console and Meta Pixel after IDs and consent are confirmed (update `privacy.html` first).

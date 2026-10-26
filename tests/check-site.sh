@@ -41,7 +41,11 @@ versions=$(grep -hoE 'styles\.css\?v=[^"]*|main\.js\?v=[^"]*' $PAGES | sort -u |
 deploy_files=$(find . -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' -o -name '*.json' -o -name '*.xml' -o -name '*.txt' \) \
   -not -path './_draft/*' -not -path './docs/*' -not -path './.git/*' -not -path './tests/*')
 grep -l 'unsplash' $deploy_files 2>/dev/null | while read -r f; do echo "FAIL: stock photo reference in $f"; done | grep . && fails=$((fails + 1))
-grep -l 'wa\.me\|api\.whatsapp' $deploy_files 2>/dev/null | while read -r f; do echo "FAIL: WhatsApp link in $f"; done | grep . && fails=$((fails + 1))
+# WhatsApp: confirmed number is 99727 76012 only; every page has the floating button
+grep -ho 'wa\.me/[0-9]*\|api\.whatsapp[^"]*' $deploy_files 2>/dev/null | grep -v '^wa\.me/919972776012$' | sort -u | while read -r w; do echo "FAIL: unconfirmed WhatsApp link $w"; done | grep . && fails=$((fails + 1))
+for p in $PAGES; do
+  grep -q 'class="whatsapp-float" href="https://wa\.me/919972776012' "$p" || fail "$p: WhatsApp button missing"
+done
 
 # Logo must be byte-identical to the supplied file
 if [ -f assets/img/kiddos-paradise-logo.png ]; then
