@@ -123,8 +123,6 @@ body.launch .review-note{display:none}
 .page-hero:after{content:"";position:absolute;right:-90px;top:-110px;width:320px;height:320px;border-radius:50%;background:#f9e8a0;opacity:.5;z-index:-1}
 .page-hero h1{font-size:clamp(2.6rem,5vw,4.4rem);max-width:860px}
 .page-hero .hero-lead{max-width:700px}
-.breadcrumb{font-size:13px;color:var(--muted);margin-bottom:6px}
-.breadcrumb a{text-decoration:underline;text-underline-offset:3px}
 
 /* Section headings */
 .section-heading{position:relative;z-index:1}
