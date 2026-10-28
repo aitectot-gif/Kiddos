@@ -49,6 +49,19 @@ body.launch .review-note{display:none}
 .nav-cta{padding:12px 18px;background:var(--yellow);border-radius:999px;font-weight:900;white-space:nowrap}
 .menu-toggle{display:none;border:0;background:var(--cream);border-radius:12px;width:46px;height:46px;padding:12px;cursor:pointer}
 .menu-toggle span{display:block;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
+/* Programs dropdown (Curriculum, Evening Activities) */
+.nav-item{position:relative;display:flex;align-items:center;gap:2px}
+.nav-item>a{transition:color .2s;padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap}
+.nav-item>a:hover{color:var(--coral)}
+.nav-item>a[aria-current="page"],.has-sub:has([aria-current="page"])>a{color:var(--coral);border-bottom-color:var(--yellow)}
+.sub-toggle{border:0;background:none;padding:4px;cursor:pointer;color:inherit;font-size:12px;line-height:1;transition:transform .2s}
+.has-sub:hover .sub-toggle,.has-sub.sub-open .sub-toggle{transform:rotate(180deg)}
+.sub-menu{display:none;position:absolute;top:100%;left:-18px;z-index:60;min-width:210px;padding:10px;background:#fff;border:1px solid #efe7d6;border-radius:16px;box-shadow:var(--shadow)}
+.has-sub:hover .sub-menu,.has-sub:focus-within .sub-menu,.has-sub.sub-open .sub-menu{display:grid;gap:2px}
+.has-sub:before{content:"";position:absolute;left:0;right:0;top:100%;height:12px}
+.sub-menu a{display:block;padding:10px 14px;border-radius:10px;white-space:nowrap}
+.sub-menu a:hover,.sub-menu a:focus-visible{background:var(--cream-2);color:var(--coral)}
+.sub-menu a[aria-current="page"]{background:#fff0b8;color:var(--coral)}
 
 /* Buttons + links */
 .button{display:inline-flex;align-items:center;justify-content:center;gap:12px;border:0;border-radius:999px;padding:15px 24px;font-size:14px;font-weight:800;font-family:var(--font-head);cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
@@ -368,23 +381,11 @@ button.gallery-item:hover img{transform:scale(1.06)}
 .lightbox-close{position:absolute;right:7px;top:4px;background:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:26px;line-height:1;cursor:pointer}
 
 @media(min-width:1500px){.section-pad{padding-left:calc((100vw - 1320px)/2);padding-right:calc((100vw - 1320px)/2)}}
-/* Desktop menu between 1281 and 1420px: shrink so the name, links and Enquire button fit on one line */
-@media(min-width:1281px) and (max-width:1420px){
-  .site-header{padding-left:max(2.5vw,18px);padding-right:max(2.5vw,18px);gap:14px}
-  .brand-name{font-size:22px}
-  .main-nav{font-size:13px;gap:14px}
-  .nav-cta{padding:11px 14px}
-}
-/* Menu button from 1280px down: eight links plus Enquire no longer fit on one line */
-@media(max-width:1280px){
-  .menu-toggle{display:block}
-  .main-nav{display:none;position:absolute;top:91px;left:0;right:0;background:#fff;padding:14px 22px 22px;box-shadow:0 15px 25px #0000000f;align-items:stretch;gap:0;flex-direction:column;font-size:16px}
-  .main-nav.open{display:flex}
-  .main-nav>a:not(.nav-cta){padding:12px 4px;border-bottom:1px solid #f0ece4}
-  .main-nav>a[aria-current="page"]{border-bottom-color:#f0ece4}
-  .nav-cta{margin-top:14px;text-align:center}
-}
 @media(max-width:1180px){
+  .site-header{padding-left:max(3vw,18px);padding-right:max(3vw,18px);gap:14px}
+  .main-nav{font-size:13px}
+  .nav-cta{padding:11px 14px}
+  .brand-name{font-size:20px}
   .program-grid{grid-template-columns:repeat(2,1fr)}
   .care-grid{grid-template-columns:repeat(2,1fr)}
   .values-grid{grid-template-columns:repeat(3,1fr)}
@@ -392,13 +393,32 @@ button.gallery-item:hover img{transform:scale(1.06)}
   .hero-photo-wrap{height:380px}
   .visual-sun{width:320px;height:320px}
 }
+/* Desktop menu between 901 and 1040px: shrink so the name, links and Enquire button fit on one line */
+@media(min-width:901px) and (max-width:1040px){
+  .site-header{gap:10px}
+  .brand-name{font-size:18px}
+  .main-nav{font-size:12px;gap:10px}
+  .nav-cta{padding:10px 12px}
+}
 @media(max-width:900px){
   html{scroll-padding-top:84px}
   .section-pad{padding:72px 24px}
   .site-header{height:78px;padding:4px 18px}
   .brand-logo{width:110px;height:110px;margin:-16px -14px}
+  .menu-toggle{display:block}
   .brand-name{font-size:22px}
-  .main-nav{top:77px}
+  .main-nav{display:none;position:absolute;top:77px;left:0;right:0;background:#fff;padding:14px 22px 22px;box-shadow:0 15px 25px #0000000f;align-items:stretch;gap:0;flex-direction:column;font-size:16px}
+  .main-nav.open{display:flex}
+  .main-nav>a:not(.nav-cta),.nav-item>a{padding:12px 4px;border-bottom:1px solid #f0ece4}
+  .main-nav>a[aria-current="page"],.nav-item>a[aria-current="page"]{border-bottom-color:#f0ece4}
+  .nav-cta{margin-top:14px;text-align:center}
+  /* Mobile menu: Programs sub-pages always listed, indented under Programs */
+  .nav-item{display:block}
+  .nav-item>a{display:block}
+  .sub-toggle{display:none}
+  .sub-menu{display:block;position:static;min-width:0;padding:0 0 0 18px;box-shadow:none;border:0;background:none;border-radius:0}
+  .sub-menu a{padding:12px 4px;border-bottom:1px solid #f0ece4;border-radius:0;font-size:15px}
+  .has-sub:has([aria-current="page"])>a{border-bottom-color:#f0ece4}
   .announcement-tagline{display:none}
   .announcement-info{margin:0 auto;justify-content:center}
   .hero{grid-template-columns:1fr;padding-top:56px;gap:10px}

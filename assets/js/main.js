@@ -98,6 +98,20 @@
     if (event.key === 'Escape' && nav?.classList.contains('open')) { setMenu(false); menuToggle?.focus(); }
   });
 
+  // Programs submenu: the caret button opens it for touch and keyboard users (hover opens it on desktop)
+  const subItem = document.querySelector('.has-sub');
+  const subToggle = subItem?.querySelector('.sub-toggle');
+  const setSub = open => {
+    subItem?.classList.toggle('sub-open', open);
+    subToggle?.setAttribute('aria-expanded', String(open));
+    subToggle?.setAttribute('aria-label', open ? 'Hide Programs submenu' : 'Show Programs submenu');
+  };
+  subToggle?.addEventListener('click', () => setSub(!subItem.classList.contains('sub-open')));
+  document.addEventListener('click', event => { if (subItem && !subItem.contains(event.target)) setSub(false); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && subItem?.classList.contains('sub-open')) { setSub(false); subToggle?.focus(); }
+  });
+
   // Footer year
   document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
