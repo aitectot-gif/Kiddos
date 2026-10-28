@@ -2,7 +2,7 @@
 # Static checks for the Kiddos Paradise site. Run from anywhere: bash tests/check-site.sh
 cd "$(dirname "$0")/.." || exit 1
 
-PAGES="index.html about.html programs.html admissions.html gallery.html contact.html privacy.html 404.html"
+PAGES="index.html about.html programs.html curriculum.html evening-activities.html admissions.html gallery.html contact.html privacy.html 404.html"
 fails=0
 fail() { echo "FAIL: $*"; fails=$((fails + 1)); }
 

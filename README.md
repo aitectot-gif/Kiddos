@@ -10,6 +10,8 @@ No build step: plain HTML, one stylesheet, one script. Deployed on Vercel from t
 | `index.html` | Home |
 | `about.html` | About Us |
 | `programs.html` | Programs (ids: `toddler playgroup nursery lkg ukg daycare tuition camp art-centre evening compare`) |
+| `curriculum.html` | Curriculum (ids: `approach areas by-age day progress ready`) |
+| `evening-activities.html` | Evening Activities (ids: `art public-speaking dance phonics tuition join`) |
 | `admissions.html` | Admissions + enquiry form (`#enquiry`) |
 | `gallery.html` | Gallery with filters + lightbox |
 | `contact.html` | Contact + enquiry form (`#enquiry`) + FAQ (`#faq`) |

@@ -228,6 +228,7 @@ button.gallery-item:hover img{transform:scale(1.06)}
 .admissions-card h2{color:#fff;max-width:650px}
 .admissions-card h2 span{color:#ffe58a}
 .admissions-card p{color:#fff2ef;max-width:580px}
+.admissions-card .review-note{color:#7a5200}
 .admissions-illustration{position:relative;height:240px}
 .rainbow{position:absolute;border:17px solid transparent;border-top-color:#ffdc62;border-left-color:#ffdc62;border-right-color:#ffdc62;border-radius:180px 180px 0 0;transform:rotate(12deg);bottom:20px;left:12%;width:250px;height:170px}
 .rainbow-two{border-top-color:#a8d96a;border-left-color:#a8d96a;border-right-color:#a8d96a;bottom:3px;left:20%;width:210px;height:140px}
@@ -259,6 +260,13 @@ button.gallery-item:hover img{transform:scale(1.06)}
 .tick-list li:before{content:"✓";position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;background:#d8f2ef;color:var(--teal-dark);font-size:13px;font-weight:800;display:grid;place-items:center}
 .director-card{display:grid;grid-template-columns:280px 1fr;gap:44px;align-items:center}
 .director-photo{height:330px;border-radius:30px;overflow:hidden;border:8px solid #fff;box-shadow:var(--shadow)}
+.values-grid{grid-template-columns:repeat(5,1fr)}
+.values-grid .care-card p{font-size:15px}
+.open-badge{display:inline-flex;align-items:center;gap:8px;background:var(--coral);color:#fff;font-family:var(--font-head);font-weight:900;font-size:16px;padding:8px 18px;border-radius:999px;transform:rotate(-2deg);margin:0 0 24px}
+.builds{background:#ffffffb0;border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+.builds strong{color:var(--coral-dark)}
+.ready-close{margin:22px 0 0;font-size:18px}
+.ready-close strong{font-family:var(--font-head);color:var(--ink)}
 
 /* Programs page */
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
@@ -358,36 +366,37 @@ button.gallery-item:hover img{transform:scale(1.06)}
 .lightbox-close{position:absolute;right:7px;top:4px;background:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:26px;line-height:1;cursor:pointer}
 
 @media(min-width:1500px){.section-pad{padding-left:calc((100vw - 1320px)/2);padding-right:calc((100vw - 1320px)/2)}}
-@media(max-width:1180px){
-  .site-header{padding-left:max(3vw,18px);padding-right:max(3vw,18px);gap:14px}
-  .main-nav{font-size:13px}
+/* Desktop menu between 1281 and 1420px: shrink so the name, links and Enquire button fit on one line */
+@media(min-width:1281px) and (max-width:1420px){
+  .site-header{padding-left:max(2.5vw,18px);padding-right:max(2.5vw,18px);gap:14px}
+  .brand-name{font-size:22px}
+  .main-nav{font-size:13px;gap:14px}
   .nav-cta{padding:11px 14px}
-  .brand-name{font-size:20px}
+}
+/* Menu button from 1280px down: eight links plus Enquire no longer fit on one line */
+@media(max-width:1280px){
+  .menu-toggle{display:block}
+  .main-nav{display:none;position:absolute;top:91px;left:0;right:0;background:#fff;padding:14px 22px 22px;box-shadow:0 15px 25px #0000000f;align-items:stretch;gap:0;flex-direction:column;font-size:16px}
+  .main-nav.open{display:flex}
+  .main-nav>a:not(.nav-cta){padding:12px 4px;border-bottom:1px solid #f0ece4}
+  .main-nav>a[aria-current="page"]{border-bottom-color:#f0ece4}
+  .nav-cta{margin-top:14px;text-align:center}
+}
+@media(max-width:1180px){
   .program-grid{grid-template-columns:repeat(2,1fr)}
   .care-grid{grid-template-columns:repeat(2,1fr)}
+  .values-grid{grid-template-columns:repeat(3,1fr)}
   .footer-main{grid-template-columns:1fr 1fr}
   .hero-photo-wrap{height:380px}
   .visual-sun{width:320px;height:320px}
-}
-/* Desktop menu between 901 and 1040px: shrink so the name, links and Enquire button fit on one line */
-@media(min-width:901px) and (max-width:1040px){
-  .site-header{gap:10px}
-  .brand-name{font-size:18px}
-  .main-nav{font-size:12px;gap:10px}
-  .nav-cta{padding:10px 12px}
 }
 @media(max-width:900px){
   html{scroll-padding-top:84px}
   .section-pad{padding:72px 24px}
   .site-header{height:78px;padding:4px 18px}
   .brand-logo{width:110px;height:110px;margin:-16px -14px}
-  .menu-toggle{display:block}
   .brand-name{font-size:22px}
-  .main-nav{display:none;position:absolute;top:77px;left:0;right:0;background:#fff;padding:14px 22px 22px;box-shadow:0 15px 25px #0000000f;align-items:stretch;gap:0;flex-direction:column;font-size:16px}
-  .main-nav.open{display:flex}
-  .main-nav>a:not(.nav-cta){padding:12px 4px;border-bottom:1px solid #f0ece4}
-  .main-nav>a[aria-current="page"]{border-bottom-color:#f0ece4}
-  .nav-cta{margin-top:14px;text-align:center}
+  .main-nav{top:77px}
   .announcement-tagline{display:none}
   .announcement-info{margin:0 auto;justify-content:center}
   .hero{grid-template-columns:1fr;padding-top:56px;gap:10px}
@@ -442,6 +451,7 @@ button.gallery-item:hover img{transform:scale(1.06)}
   .approach-photo-small{height:130px;width:43%;border-width:5px}
   .approach-bubble{width:90px;height:90px;font-size:12px;border-width:4px}
   .care-grid{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr}
   .daycare-art{height:320px}
   .daycare-circle{width:270px;height:270px;right:5%}
   .daycare-image{width:220px;height:260px}
