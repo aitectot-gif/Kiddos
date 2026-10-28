@@ -247,6 +247,8 @@ button.gallery-item:hover img{transform:scale(1.06)}
 /* Content blocks for inner pages */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:center}
 .split-media{height:400px;border-radius:30px;overflow:hidden;border:8px solid #fff;box-shadow:var(--shadow)}
+.split-title{font-size:clamp(2.2rem,4.1vw,3.6rem);margin:12px 0 20px}
+.subhead{font-size:22px;color:var(--coral);margin-bottom:10px}
 .prose{max-width:760px}
 .prose p,.prose li{font-size:16px;line-height:1.85;color:var(--muted)}
 .prose h2{font-size:clamp(1.8rem,3vw,2.4rem);margin-top:42px}
