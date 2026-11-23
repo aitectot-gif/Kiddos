@@ -31,12 +31,12 @@ const makeForm = () => {
 (async () => {
   const M = KP.MESSAGES;
 
-  // mailto fallback
+  // WhatsApp fallback
   {
     const form = makeForm(); let navigated = null;
     const r = await KP.submitEnquiry(form, { endpoint: '', fetchImpl: () => { throw new Error('no fetch'); }, navigate: u => { navigated = u; } });
     const status = form.querySelector('.form-status').textContent;
-    check('mailto fallback', r === 'mailto' && String(navigated).startsWith('mailto:kiddosparadise19@gmail.com?subject=') && status === M.mailto,
+    check('WhatsApp fallback', r === 'whatsapp' && String(navigated).startsWith('https://wa.me/919972776012?text=') && status === M.whatsapp,
       JSON.stringify({ r, navigated, status }));
   }
 
@@ -78,10 +78,10 @@ const makeForm = () => {
     check('honeypot', r === 'blocked' && !called, JSON.stringify({ r, called }));
   }
 
-  // buildMailto encodes
+  // buildWhatsApp encodes
   {
-    const url = KP.buildMailto({ parentName: 'A', phone: '1', childAge: '2–3 years', program: 'Playgroup', startDate: '', message: 'Fees & timings?' });
-    check('buildMailto encodes', url.includes('%26') && !url.includes('& timings') && url.includes(encodeURIComponent('Program: Playgroup')), url);
+    const url = KP.buildWhatsApp({ parentName: 'A', phone: '1', childAge: '2–3 years', program: 'Playgroup', startDate: '', message: 'Fees & timings?' });
+    check('buildWhatsApp encodes', url.includes('%26') && !url.includes('& timings') && url.includes(encodeURIComponent('Program: Playgroup')), url);
   }
 
   out.textContent = results.join('\n') + `\n${results.every(r => r.startsWith('PASS')) ? 'ALL PASS' : 'SOME FAILED'}`;

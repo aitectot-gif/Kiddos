@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261124b">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261124c">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -70,7 +70,7 @@
       <a href="admissions.html">Admissions</a>
       <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
-      <a class="nav-cta" href="admissions.html#enquiry">Enquire About Admissions <span aria-hidden="true">↗</span></a>
+      <a class="nav-cta" href="admissions.html?intent=visit#enquiry">Book a School Visit <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
 
@@ -83,8 +83,8 @@
         <h1 id="hero-title">A happy place for <span class="text-coral">little</span> <span class="text-teal">explorers.</span></h1>
         <p class="hero-lead">At Kiddos Paradise, children learn by exploring, creating, asking questions and discovering the world around them. Our Reggio Emilia and Montessori-inspired approach brings progressive learning into everyday experiences, helping children build curiosity, confidence, independence and a joyful foundation for lifelong learning.</p>
         <div class="hero-actions">
-          <a class="button button-coral" href="programs.html">Explore Our Programs <span aria-hidden="true">↗</span></a>
-          <a class="button button-light" href="tel:+919972776012">Call to Enquire <span aria-hidden="true">→</span></a>
+          <a class="button button-coral" href="admissions.html?intent=visit#enquiry">Book a School Visit <span aria-hidden="true">↗</span></a>
+          <a class="button button-light" href="programs.html">Explore Our Programs <span aria-hidden="true">→</span></a>
         </div>
         <div class="hero-contact">
           <span class="contact-icon" aria-hidden="true">☎</span>
@@ -231,18 +231,25 @@
       </div>
     </section>
 
-    <section class="care section-pad" aria-labelledby="care-title">
+    <section class="care section-pad" id="safety-care" aria-labelledby="care-title">
       <div class="section-heading centered">
-        <div class="section-kicker">Facilities and care</div>
-        <h2 id="care-title">A supportive environment for <span class="text-coral">growing minds.</span></h2>
+        <div class="section-kicker">Safety &amp; care</div>
+        <h2 id="care-title">Your child's safety and care <span class="text-coral">come first.</span></h2>
+        <p>Leaving your little one with us is a big step. Here is how we help every child feel safe, cared for and at home.</p>
       </div>
-      <div class="care-grid">
+      <div class="care-grid safety-grid">
         <article class="care-card"><span class="care-icon bg-yellow" aria-hidden="true">📹</span><h3>Live CCTV access for parents</h3><p>Parents can view live CCTV of designated areas of the school.</p></article>
-        <article class="care-card"><span class="care-icon bg-teal" aria-hidden="true">🚌</span><h3>Transport</h3><p>School transport facility. Ask us about service areas, routes and charges.</p></article>
+        <article class="care-card"><span class="care-icon bg-teal" aria-hidden="true">🤝</span><h3>Small groups</h3><p>Small group and one-to-one attention so every child is seen and heard.</p></article>
         <article class="care-card"><span class="care-icon bg-coral" aria-hidden="true">🍎</span><h3>Meals &amp; snacks</h3><p>Food and snacks are provided for daycare children.</p></article>
         <article class="care-card"><span class="care-icon bg-green" aria-hidden="true">🌳</span><h3>Outdoor play</h3><p>Space for movement, play and physical exploration.</p></article>
+        <article class="care-card"><span class="care-icon bg-lilac" aria-hidden="true">🏡</span><h3>Home-like daycare</h3><p>A welcoming second home for ages 1 to 10, from 9:00 AM to 7:00 PM.</p></article>
+        <article class="care-card"><span class="care-icon bg-teal" aria-hidden="true">🚌</span><h3>School transport</h3><p>Transport facility available. Ask us about service areas, routes and charges.</p></article>
       </div>
-      <p class="small-print review-note">Confirm: each facility and its details; teacher-to-child ratio (reported 1:10) before publishing it.</p>
+      <div class="safety-cta">
+        <p><strong>Have a question about safety?</strong> Ask us about pick-up, hygiene and first-aid arrangements when you visit.</p>
+        <div class="hero-actions"><a class="button button-coral" href="admissions.html?intent=visit#enquiry">Book a School Visit <span aria-hidden="true">↗</span></a><a class="button button-whatsapp" href="https://wa.me/919972776012?text=Hello%20Kiddos%20Paradise%2C%20I%20am%20interested%20in%20learning%20about%20safety%20and%20care%20at%20the%20school%20for%20my%20child.%20Please%20share%20admission%20details%2C%20fees%20and%20availability." target="_blank" rel="noopener">WhatsApp about Safety <span aria-hidden="true">💬</span></a></div>
+      </div>
+      <p class="small-print review-note">Confirm: each facility and its details; teacher-to-child ratio (reported 1:10), pick-up rules, hygiene and first-aid details before publishing them.</p>
     </section>
 
     <section class="daycare-band section-pad" aria-labelledby="daycare-title">
@@ -251,7 +258,7 @@
         <h2 id="daycare-title">Care, comfort and play — <span>while you're at work.</span></h2>
         <p>Our daycare is designed to provide children with a welcoming, home-like environment during the day. With age-appropriate activities, opportunities for rest and play, and food and snacks provided, we aim to make the day comfortable and engaging for every child.</p>
         <div class="fact-pills"><span>🧒 Ages 1–10</span><span>🕘 9:00 AM–7:00 PM</span><span>🍎 Food &amp; snacks</span><span>📹 Live CCTV access</span></div>
-        <a class="button button-dark" href="programs.html#daycare">Enquire About Daycare <span aria-hidden="true">↗</span></a>
+        <div class="hero-actions"><a class="button button-dark" href="programs.html#daycare">Enquire About Daycare <span aria-hidden="true">↗</span></a><a class="button button-whatsapp" href="https://wa.me/919972776012?text=Hello%20Kiddos%20Paradise%2C%20I%20am%20interested%20in%20Daycare%20%281%20to%2010%20years%29%20for%20my%20child.%20Please%20share%20admission%20details%2C%20fees%20and%20availability." target="_blank" rel="noopener">WhatsApp about Daycare <span aria-hidden="true">💬</span></a></div>
         <p class="review-note">Confirm: daycare operating days and holiday availability.</p>
       </div>
       <div class="daycare-art">
@@ -268,7 +275,7 @@
         <h2 id="tuition-title">Small batches. <span class="text-coral">Focused learning.</span></h2>
         <p>Kiddos Paradise offers tuition support for children aged 3 to 12 years studying under CBSE and ICSE boards. Small batches allow more focused guidance, opportunities to ask questions and support with school learning.</p>
         <div class="key-facts"><div><small>Timing</small><strong>3:00–6:00 PM</strong></div><div><small>Batch size</small><strong>3–4 students</strong></div><div><small>Boards</small><strong>CBSE &amp; ICSE</strong></div></div>
-        <a class="button button-coral" href="programs.html#tuition">Ask About Tuition <span aria-hidden="true">↗</span></a>
+        <div class="hero-actions"><a class="button button-coral" href="programs.html#tuition">Ask About Tuition <span aria-hidden="true">↗</span></a><a class="button button-whatsapp" href="https://wa.me/919972776012?text=Hello%20Kiddos%20Paradise%2C%20I%20am%20interested%20in%20Tuition%20Classes%20%283%20to%2012%20years%29%20for%20my%20child.%20Please%20share%20admission%20details%2C%20fees%20and%20availability." target="_blank" rel="noopener">WhatsApp about Tuition <span aria-hidden="true">💬</span></a></div>
         <p class="review-note">Confirm: supported grades and subjects.</p>
       </div>
     </section>
@@ -363,11 +370,11 @@
 
   <div class="mobile-actions" aria-label="Quick contact">
     <a href="tel:+919972776012">☎ Call</a>
-    <a href="admissions.html#enquiry">✦ Enquire</a>
+    <a href="admissions.html?intent=visit#enquiry">✦ Book Visit</a>
   </div>
   <a class="whatsapp-float" href="https://wa.me/919972776012?text=Hello%20Kiddos%20Paradise%2C%20I%20would%20like%20to%20know%20more%20about%20admissions." target="_blank" rel="noopener" aria-label="Chat with Kiddos Paradise on WhatsApp (opens in a new tab)">
     <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.46A11.27 11.27 0 0 0 12.05.72C5.8.72.7 5.81.7 12.07c0 2 .52 3.95 1.52 5.67L.6 23.5l5.9-1.55a11.33 11.33 0 0 0 5.54 1.41h.01c6.26 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.32-8.02z"/></svg>
   </a>
-  <script src="assets/js/main.js?v=20261123a"></script>
+  <script src="assets/js/main.js?v=20261124a"></script>
 </body>
 </html>

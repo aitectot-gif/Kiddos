@@ -1,13 +1,12 @@
 // Kiddos Paradise — site behaviour. Each feature no-ops when its elements are absent.
 (() => {
   // Set this to a form service URL (Formspree, Google Apps Script web app, etc.) once it is
-  // configured and tested. While empty, the form opens a pre-filled email draft instead.
+  // configured and tested. While empty, the form opens WhatsApp with the enquiry filled in.
   const FORM_ENDPOINT = '';
-  const SCHOOL_EMAIL = 'kiddosparadise19@gmail.com';
 
   const MESSAGES = {
     sent: 'Thank you for enquiring with Kiddos Paradise. Your details have been submitted. The school team will contact you using the information provided.',
-    mailto: 'Opening an email draft to Kiddos Paradise. Your enquiry is sent only when you send that email.',
+    whatsapp: 'Opening WhatsApp with your enquiry. It reaches the school only when you tap Send in WhatsApp.',
     error: 'Sorry, your enquiry could not be sent. Please call 99727 76012 or 91879 63957.',
     sending: 'Sending your enquiry…',
   };
@@ -19,9 +18,8 @@
     return Object.fromEntries(FIELDS.map(name => [name, String(data.get(name) || '').trim()]));
   }
 
-  function buildMailto(fields) {
-    const subject = `Website enquiry — ${fields.program || 'Admissions'}`;
-    const body = [
+  function buildWhatsApp(fields) {
+    const text = [
       'Hello Kiddos Paradise,',
       '',
       'I would like to enquire about a program.',
@@ -34,8 +32,8 @@
       `Message: ${fields.message || 'Not provided'}`,
       '',
       'Please contact me with more details.',
-    ].join('\r\n');
-    return `mailto:${SCHOOL_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    ].join('\n');
+    return `https://wa.me/919972776012?text=${encodeURIComponent(text)}`;
   }
 
   function setStatus(form, state, text) {
@@ -55,9 +53,9 @@
 
     const fields = readFields(form);
     if (!endpoint) {
-      setStatus(form, 'mailto', MESSAGES.mailto);
-      navigate(buildMailto(fields));
-      return 'mailto';
+      setStatus(form, 'whatsapp', MESSAGES.whatsapp);
+      navigate(buildWhatsApp(fields));
+      return 'whatsapp';
     }
 
     const button = form.querySelector('[type=submit]');
@@ -82,7 +80,7 @@
     }
   }
 
-  window.KP = { FORM_ENDPOINT, MESSAGES, buildMailto, submitEnquiry };
+  window.KP = { FORM_ENDPOINT, MESSAGES, buildWhatsApp, submitEnquiry };
 
   // Mobile navigation
   const menuToggle = document.querySelector('.menu-toggle');
@@ -142,6 +140,22 @@
 
   // Enquiry forms
   document.querySelectorAll('form.enquiry-form[data-enquiry]').forEach(form => {
+    if (!FORM_ENDPOINT) {
+      const label = form.querySelector('.form-submit')?.firstChild;
+      if (label) label.textContent = 'Send on WhatsApp ';
+    }
+
+    // Links like admissions.html?intent=visit&program=Daycare#enquiry pre-fill the form
+    const params = new URLSearchParams(window.location.search);
+    const program = params.get('program');
+    const select = form.elements.program;
+    if (program && select && [...select.options].some(option => option.value === program)) select.value = program;
+    if (params.get('intent') === 'visit') {
+      if (form.elements.message && !form.elements.message.value) form.elements.message.value = 'I would like to book a school visit.';
+      const heading = form.closest('.enquiry-panel')?.querySelector('h2');
+      if (heading) heading.textContent = 'Book a school visit';
+    }
+
     form.addEventListener('submit', event => {
       event.preventDefault();
       if (!form.reportValidity()) return;
