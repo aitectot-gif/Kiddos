@@ -520,3 +520,5 @@ img[src*="child-reading-book"]{object-position:center 62%}
 img[src*="child-focused-learning"]{object-position:center 25%}
 img[src*="children-yoga-poses"]{object-position:center 12%}
 img[src*="child-on-wooden-slide"]{object-position:center 18%}
+.hero-cctv{display:inline-flex;align-items:center;gap:10px;width:fit-content;max-width:100%;margin:16px 0 0;padding:10px 20px;border-radius:999px;background:var(--coral-dark);color:#fff;font-family:var(--font-head);font-size:clamp(18px,2.2vw,24px);font-weight:900;line-height:1.2}
+.hero-copy>.hero-cctv{order:0}
