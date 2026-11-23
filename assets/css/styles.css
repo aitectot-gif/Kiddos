@@ -522,3 +522,20 @@ img[src*="children-yoga-poses"]{object-position:center 12%}
 img[src*="child-on-wooden-slide"]{object-position:center 18%}
 .hero-cctv{display:inline-flex;align-items:center;gap:10px;width:fit-content;max-width:100%;margin:16px 0 0;padding:10px 20px;border-radius:999px;background:var(--coral-dark);color:#fff;font-family:var(--font-head);font-size:clamp(18px,2.2vw,24px);font-weight:900;line-height:1.2}
 .hero-copy>.hero-cctv{order:0}
+/* Highlights */
+.highlights{scroll-margin-top:100px}
+.highlight-tile{display:block;color:#fff}
+.highlight-tile:hover img{transform:scale(1.06)}
+.highlight-caption{position:absolute;left:0;right:0;bottom:0;display:block;padding:36px 16px 14px;background:linear-gradient(transparent,#000000c2);color:#fff}
+.highlight-caption strong{display:block;font-family:var(--font-head);font-size:18px;font-weight:900;color:#fff}
+.highlight-caption small{display:block;font-size:13px;line-height:1.4;color:#fff}
+.highlight-groups{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:38px 14px}
+.highlight-group{grid-column:span 4;min-width:0;scroll-margin-top:110px}
+.highlight-group.h-one{grid-column:span 1}
+.highlight-group.h-two{grid-column:span 2}
+.highlight-group h3{font-size:1.45rem;margin:0 0 4px}
+.highlight-group p{font-size:14px;line-height:1.5;margin:0 0 12px}
+.highlight-photos{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));grid-auto-rows:270px;gap:14px}
+@media(max-width:900px){.highlight-groups{grid-template-columns:repeat(2,minmax(0,1fr))}.highlight-group,.highlight-group.h-two{grid-column:span 2}.highlight-group.h-one{grid-column:span 1}.highlight-photos{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:190px;gap:10px}.h-one .highlight-photos{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:700px){.highlight-caption{padding:24px 10px 9px}.highlight-caption strong{font-size:15px}.highlight-caption small{display:none}}
+@media(max-width:700px){.highlights .gallery-grid{grid-template-rows:380px 150px 150px}.highlights .gallery-large img{object-position:center 30%}}
