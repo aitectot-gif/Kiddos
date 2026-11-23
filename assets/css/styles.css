@@ -504,3 +504,19 @@ button.gallery-item:hover img{transform:scale(1.06)}
   .site-header{padding-left:12px;padding-right:12px}
   .brand-name{font-size:18px}
 }
+
+/* School photos */
+.photo-img{display:block;width:100%;height:100%;object-fit:cover}
+.photo-logo{display:block;width:100%;height:100%;object-fit:contain;padding:28px;background:#fff}
+.gallery-item img{display:block;object-position:center 35%}
+.program-side{display:grid;gap:14px}
+.program-photo{display:block;width:100%;height:230px;object-fit:cover;border-radius:22px;border:5px solid #fff;box-shadow:var(--shadow)}
+/* Photo focal points */
+img[src*="nursery-classroom"]{object-position:center 6%}
+img[src*="children-building-blocks"]{object-position:center 18%}
+img[src*="geometry-learning-materials"]{object-position:center 72%}
+img[src*="reading-corner-playhouse"]{object-position:center 22%}
+img[src*="child-reading-book"]{object-position:center 62%}
+img[src*="child-focused-learning"]{object-position:center 25%}
+img[src*="children-yoga-poses"]{object-position:center 12%}
+img[src*="child-on-wooden-slide"]{object-position:center 18%}
